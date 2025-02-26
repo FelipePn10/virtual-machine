@@ -5,16 +5,19 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
+#include "birchutils.h"
+
+#define ErrMem      0x01
 
 typedef unsigned char int8;
 typedef unsigned short int16;
 typedef unsigned int int32;
 typedef unsigned long long int int64;
 
-#define $8 (int8 *)
-#define $6 (int16)
-#define $2 (int32)
-#define $4 (int64)
+#define $1 (int8 *)
+#define $2 (int16)
+#define $4 (int32)
+#define $8 (int64)
 #define $c (char *)
 #define $i (int)
 
@@ -29,7 +32,15 @@ typedef unsigned long long int int64;
     65 KB memory
     (Serial COM port)
     (Floppy drive)
+
+    AX, BX, CX, DX are general purpose registers.
+    SP (Stack Pointer) stores the address of the top of the stack.
+    IP (Instruction Pointer) holds the address of the next instruction to be executed.
+
+    CPU registers will be 16 bits wide.
 */
+
+
 typedef unsigned short int Reg;
 struct s_registers {
     Reg ax;
@@ -40,7 +51,7 @@ struct s_registers {
     Reg ip;
 };
 typedef struct s_registers Registers;
-
+//Register Set
 struct s_cpu {
     Registers r;
 };
@@ -54,11 +65,13 @@ typedef struct s_cpu CPU;
 */
 
 enum e_opcode {
-    mov = 0x01, 
+    mov = 0x01,  // operation to move values between registers.
     nop = 0x02
 };
 typedef enum e_opcode Opcode;
 
+// Instruction mapping structure
+// Helps the CPU interpret how many bytes it needs to read for each instruction.
 struct s_instrmap {
     Opcode o;
     int8 size;
@@ -66,6 +79,7 @@ struct s_instrmap {
 typedef struct s_intrmap IM;
 
 typedef int8 Args;
+// Represents a CPU command, storing different instructions and their parameters
 struct s_instruction {
     Opcode o;
     Args a[]; /* 0-2 bytes */
@@ -77,6 +91,7 @@ typedef Instruction Program;
 
 struct s_vm {
      CPU c;
+     Stack s;
      Program *p;
 };
 typedef struct s_vm VM;
@@ -87,4 +102,5 @@ static IM instrmap[] = {
     { nop, 0x01 }
 };
 
+VM *virtualmachine(Program*, int16);
 int main(int,char**);
