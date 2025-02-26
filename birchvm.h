@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "birchutils.h"
+#include <birchutils.h>
 
 #define ErrMem      0x01
 
