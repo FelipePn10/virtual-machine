@@ -76,3 +76,4 @@ int8 *todotted(uint32_t ip) {
 
 
 #pragma GCC diagnostic pop
+#pragma GCC diagnostic push

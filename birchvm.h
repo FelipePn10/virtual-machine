@@ -6,8 +6,12 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <birchutils.h>
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
+#pragma GCC diagnostic ignored "-Wformat-truncation="
+#pragma GCC diagnostic push
 
 #define ErrMem      0x01
+#define NoArgs      { 0x00, 0x00 }
 
 typedef unsigned char int8;
 typedef unsigned short int16;
@@ -74,7 +78,7 @@ typedef enum e_opcode Opcode;
 // Helps the CPU interpret how many bytes it needs to read for each instruction.
 struct s_instrmap {
     Opcode o;
-    int8 size;
+    int8 s;
 };
 typedef struct s_intrmap IM;
 
@@ -84,7 +88,7 @@ struct s_instruction {
     Opcode o;
     Args a[]; /* 0-2 bytes */
 };
-typedef struct s_instruction Instruction;
+typedef struct s_instruction *Instruction;
 
 typedef int8 Stack[((unsigned int)(-1))];
 typedef Instruction Program;
@@ -96,11 +100,13 @@ struct s_vm {
 };
 typedef struct s_vm VM;
 
-static Opcode opc;
 static IM instrmap[] = {
     { mov, 0x03 },
     { nop, 0x01 }
 };
+#define IMs (sizeof(instrmap) / sizeof(struct s_instrmap))
 
-VM *virtualmachine(Program*, int16);
+ Program exampleprogram(void);
+int8 map(Opcode o);
+VM *virtualmachine(Program, int8);
 int main(int,char**);
