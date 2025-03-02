@@ -1,7 +1,7 @@
 # Máquina Virtual - VM Assembly
 
 ## Descrição
-Este projeto consiste na criação de uma máquina virtual totalmente funcional, incluindo uma CPU virtual, registradores, uma linguagem Assembly própria e um sistema de memória virtual composto por uma pilha e um segmento de código. Além disso, futuramente pode ser implementada uma interface de entrada/saída através de uma porta serial virtual ou unidade de disquete.
+Este projeto consiste na criação de uma máquina virtual totalmente funcional, incluindo uma CPU virtual, registradores, uma linguagem Assembly própria e um sistema de memória virtual. Além disso, futuramente poderá ser implementada uma interface de entrada/saída através de uma porta serial virtual ou unidade de disquete.
 
 O objetivo é desenvolver tudo do zero, sem dependências externas, utilizando apenas funcionalidades essenciais da linguagem C e implementando todas as funções necessárias manualmente.
 
