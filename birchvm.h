@@ -5,7 +5,11 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
+#include <errno.h>
 #include "birchutils/birchutils/birchutils.h"
+#pragma GCC diagnostic ignored "-Wstringop-trunvation"
+#pragma GCC diagnostic ignored "-Wstringop-trunvation="
+#pragma GCC diagnostic push
 
 #define ErrMem      0x01
 #define NoArgs      { 0x00, 0x00 }
@@ -105,5 +109,7 @@ static IM instrmap[] = {
 };
 #define IMs (sizeof(instrmap) / sizeof(struct s_instrmap))
 
-VM *virtualmachine(Program*, int16);
+Program *exampleprogram(VM*);
+int8 map(Opcode);
+VM *virtualmachine(void);
 int main(int,char**);

@@ -52,12 +52,13 @@ Program *exampleprogram(VM *vm) {
     i2 = (Instruction *)malloc($i s2);
     assert(i1 && i2);
     zero($1 i1, s1);
-    zero(i2, s2);
+    zero($1 i2, s2);
 
-    i1 -> o = mov;
+    i1->o = mov;
     sa1 = (s1-1);
-    if(s1) {
+    if(s1)
         a1 = (Args *)malloc($i sa1);
+    if (a1) {
         assert(a1);
         zero(a1, sa1);
         *a1     = 0x00;
@@ -71,7 +72,7 @@ Program *exampleprogram(VM *vm) {
     copy($1 p, $1 i1, 1);
     p++;
 
-    if(sa1 && a1) {
+    if(a1) {
         copy($1 p, $1 a1, sa1);
         p += sa1;
         free(a1);
