@@ -41,7 +41,7 @@ VM *virtualmachine() {
 
 Program *exampleprogram(VM *vm) {
     Program p;
-    Instruction *i1, *i2;
+    Instruction i1, i2;
     Args *a1;
     int16 s1, s2, sa1;
 

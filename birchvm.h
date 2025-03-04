@@ -7,8 +7,8 @@
 #include <assert.h>
 #include <errno.h>
 #include "birchutils/birchutils/birchutils.h"
-#pragma GCC diagnostic ignored "-Wstringop-trunvation"
-#pragma GCC diagnostic ignored "-Wformat-trunvation="
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
+#pragma GCC diagnostic ignored "-Wformat-truncation="
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 #pragma GCC diagnostic push
 
@@ -16,7 +16,7 @@
 #define NoArgs      { 0x00, 0x00 }
 
 typedef unsigned char int8;
-typedef unsigned short int16;
+typedef unsigned short int int16;
 typedef unsigned int int32;
 typedef unsigned long long int int64;
 

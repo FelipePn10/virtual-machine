@@ -10,7 +10,9 @@
 #else
     #include <arpa/inet.h>
 #endif
+
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef unsigned char int8;
 typedef unsigned short int int16;
@@ -23,17 +25,24 @@ void printhex(int8*, int16, int8);
 int8* todotted(in_addr_t);
 void zero(int8*, int16);
 
-/* Não execute código diretamente aqui */
-void initialize_sockets() {
-    WSADATA wsaData;
-    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        fprintf(stderr, "WSAStartup failed\n");
-        exit(1);
-    }
-}
+#ifdef _WIN32
 
-void cleanup_sockets() {
-    WSACleanup();
-}
+    void initialize_sockets() {
+        WSADATA wsaData;
+        if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+            fprintf(stderr, "WSAStartup failed\n");
+            exit(1);
+        }
+    }
+
+
+    void cleanup_sockets() {
+        WSACleanup();
+    }
+#else
+
+    void initialize_sockets() {}
+    void cleanup_sockets() {}
+#endif
 
 #pragma GCC diagnostic pop
