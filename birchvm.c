@@ -71,7 +71,7 @@ Program *exampleprogram(VM *vm) {
     copy($1 p, $1 i1, 1);
     p++;
 
-    if(sa1) {
+    if(sa1 && a1) {
         copy($1 p, $1 a1, sa1);
         p += sa1;
         free(a1);
