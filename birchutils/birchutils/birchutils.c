@@ -1,5 +1,5 @@
 /* birchutils.c v1.3.1 */
-#include <birchutils.h>
+#include "birchutils.h"
 #ifdef _WIN32
     #include <winsock2.h>
     #include <ws2tcpip.h>
@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
-//#include <birchutils.h>
+#include "birchutils.h"
 
 void copy(int8 *dst, int8 *src, int16 size) {
     int8 *d, *s;

@@ -25,24 +25,8 @@ void printhex(int8*, int16, int8);
 int8* todotted(in_addr_t);
 void zero(int8*, int16);
 
-#ifdef _WIN32
-
-    void initialize_sockets() {
-        WSADATA wsaData;
-        if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-            fprintf(stderr, "WSAStartup failed\n");
-            exit(1);
-        }
-    }
-
-
-    void cleanup_sockets() {
-        WSACleanup();
-    }
-#else
-
-    void initialize_sockets() {}
-    void cleanup_sockets() {}
-#endif
+/* Apenas declarações das funções de socket */
+void initialize_sockets();
+void cleanup_sockets();
 
 #pragma GCC diagnostic pop
