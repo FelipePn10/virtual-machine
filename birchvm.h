@@ -5,9 +5,14 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
-#include <birchutils.h>
+#include "birchutils/birchutils/birchutils.h"
+
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
+#pragma GCC diagnostic ignored "-Wformat-truncation="
+#pragma GCC diagnostic push
 
 #define ErrMem      0x01
+#define NoArgs      { 0x00, 0x00 }
 
 typedef unsigned char int8;
 typedef unsigned short int16;
@@ -66,7 +71,7 @@ typedef struct s_cpu CPU;
 
 enum e_opcode {
     mov = 0x01,  // operation to move values between registers.
-    nop = 0x02
+    nop = 0x02 
 };
 typedef enum e_opcode Opcode;
 
@@ -74,9 +79,9 @@ typedef enum e_opcode Opcode;
 // Helps the CPU interpret how many bytes it needs to read for each instruction.
 struct s_instrmap {
     Opcode o;
-    int8 size;
+    int8 s;
 };
-typedef struct s_intrmap IM;
+typedef struct s_instrmap IM;
 
 typedef int8 Args;
 // Represents a CPU command, storing different instructions and their parameters
@@ -86,21 +91,24 @@ struct s_instruction {
 };
 typedef struct s_instruction Instruction;
 
-typedef int8 Stack[((unsigned int)(-1))];
-typedef Instruction Program;
+typedef int8 Memory[((unsigned int)(-1))];
+typedef int8 Program;
 
 struct s_vm {
      CPU c;
-     Stack s;
+     Memory m;
      Program *p;
 };
 typedef struct s_vm VM;
+typedef Memory *Stack;
 
-static Opcode opc;
 static IM instrmap[] = {
     { mov, 0x03 },
     { nop, 0x01 }
 };
+#define IMs (sizeof(instrmap) / sizeof(struct s_instrmap))
 
-VM *virtualmachine(Program*, int16);
+Program *exampleprogram(VM*);
+int8 map(Opcode);
+VM *virtualmachine(void);
 int main(int,char**);

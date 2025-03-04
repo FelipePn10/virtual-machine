@@ -1,19 +1,18 @@
 # Compiler and flags
-CC = gcc
-CFLAGS = -O2 -Wall -std=c11
-LDFLAGS = 
+CC := gcc
+CFLAGS := -O2 -Wall -std=c2x -I$(VMPATH)/birchutils
+LDFLAGS :=
 
 # Paths
-VMPATH = C:/Users/felip/projectC/virtual-machine/virtual-machine
-UTILS_PATH = $(VMPATH)/birchutils
+VMPATH := ./virtual-machine
+UTILS_PATH := $(VMPATH)/birchutils
 
 # Objects
-UTILS_OBJ = $(UTILS_PATH)/birchutils.o
-VM_OBJ = birchvm.o
+UTILS_OBJ := $(UTILS_PATH)/birchutils.o
+VM_OBJ := birchvm.o
 
-.PHONY: all clean
+.PHONY: all clean test
 
-# Main build target
 all: birchvm
 
 # Compile utils library
@@ -25,11 +24,13 @@ birchvm: $(VM_OBJ) $(UTILS_OBJ)
 	$(CC) $(CFLAGS) $(VM_OBJ) $(UTILS_OBJ) -o $@ $(LDFLAGS)
 
 # Compile birchvm object file
-birchvm.o: birchvm.c
+birchvm.o: birchvm.c birchvm.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean generated files
+# Test target
+test: birchvm
+	./birchvm testfile.vm
+
+# Clean up
 clean:
-	@if exist *.o del /F /Q *.o
-	@if exist birchvm del /F /Q birchvm
-	@if exist $(UTILS_OBJ) del /F /Q $(UTILS_OBJ)
+	rm -f *.o birchvm $(UTILS_OBJ)

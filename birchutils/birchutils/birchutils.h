@@ -1,4 +1,5 @@
 #pragma once
+
 #pragma GCC diagnostic ignored "-Wstringop-truncation"
 #pragma GCC diagnostic ignored "-Wformat-truncation="
 #pragma GCC diagnostic push
@@ -36,4 +37,3 @@ void cleanup_sockets() {
 }
 
 #pragma GCC diagnostic pop
-
