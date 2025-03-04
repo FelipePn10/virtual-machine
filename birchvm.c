@@ -54,7 +54,7 @@ Program *exampleprogram(VM *vm) {
     zero($1 i1, s1);
     zero(i2, s2);
 
-    i1->o = mov;
+    i1 -> o = mov;
     sa1 = (s1-1);
     if(s1) {
         a1 = (Args *)malloc($i sa1);
@@ -71,7 +71,7 @@ Program *exampleprogram(VM *vm) {
     copy($1 p, $1 i1, 1);
     p++;
 
-    if(a1) {
+    if(sa1) {
         copy($1 p, $1 a1, sa1);
         p += sa1;
         free(a1);

@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
-#include <birchutils.h>
+#include "birchutils/birchutils/birchutils.h"
 
 #define ErrMem      0x01
 #define NoArgs      { 0x00, 0x00 }
@@ -87,7 +87,8 @@ struct s_instruction {
 };
 typedef struct s_instruction *Instruction;
 
-typedef int8 Memory[((unsigned int)(-1))];
+#define MEMORY_SIZE (1024 * 1024 * 1024)
+typedef int8 Memory[MEMORY_SIZE];
 typedef int8 Program;
 
 struct s_vm {
