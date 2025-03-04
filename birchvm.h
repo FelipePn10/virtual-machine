@@ -8,7 +8,8 @@
 #include <errno.h>
 #include "birchutils/birchutils/birchutils.h"
 #pragma GCC diagnostic ignored "-Wstringop-trunvation"
-#pragma GCC diagnostic ignored "-Wstringop-trunvation="
+#pragma GCC diagnostic ignored "-Wformat-trunvation="
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 #pragma GCC diagnostic push
 
 #define ErrMem      0x01
