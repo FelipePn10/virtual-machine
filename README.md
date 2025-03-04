@@ -26,3 +26,6 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou env
 ## Licença 📜
 
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
+
+
+#### projeto feito com base na aula do DrJonas. Todos os direitos reservados a ele
